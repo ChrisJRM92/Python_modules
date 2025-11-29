@@ -1,0 +1,5 @@
+nombreProducto = input("Ingrese un producto: ")
+precioProducto = input("Ingree el precio: ")
+cantidadProducto = input("Ingrese la cantidad: ")
+total = float(precioProducto)*int(cantidadProducto)
+print(f"El valor de {cantidadProducto} {nombreProducto} es {total}")
