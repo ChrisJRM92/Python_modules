@@ -4,6 +4,8 @@ from random import randint
 
 valorJugador1=0
 valorJugador2=0
+puntajeJugador1 = 0
+puntajeJugador2 = 0
 
 def fnNuevaPartida():
     lblDadoJugador1.config(image=imagenes[0])
@@ -35,11 +37,18 @@ def fnLanzarDadoJugador2():
         fnDeterminarGanador()
 
 def fnDeterminarGanador():
+    global puntajeJugador1
+    global puntajeJugador2
     btnNuevaPartida.config(state="normal")
     if valorJugador1>valorJugador2:
         lblResultado.config(text="Gana el Jugador 1")
+        puntajeJugador1+=1
+        lblPuntajeJugador1.config(text=f"{puntajeJugador1}")
     elif valorJugador2>valorJugador1:
         lblResultado.config(text="Gana el Jugador 2")
+        puntajeJugador2+=1
+        lblPuntajeJugador2.config(text=f"{puntajeJugador2}")
+
     else:
         lblResultado.config(text="EMPATE")
 
@@ -68,8 +77,8 @@ lblDadoJugador2=Label(framePrincipal,image=imagenes[0])
 btnLanzar2=Button(framePrincipal,text="LANZAR",command=fnLanzarDadoJugador2,bg="black",fg="white",font=("Arial", 12))
 lblResultado=Label(framePrincipal,text="",fg="red",font=("Arial", 15),bg="white")
 btnNuevaPartida=Button(framePrincipal,text="NUEVA PARTIDA",command=fnNuevaPartida,bg="lime",font=("Arial", 12), state="disabled")
-lblPuntajeJugador1=Label(framePrincipal,text="0",fg="blue",font=("Arial", 25),bg="white")
-lblPuntajeJugador2=Label(framePrincipal,text="0",fg="blue",font=("Arial", 25),bg="white")
+lblPuntajeJugador1=Label(framePrincipal,text=f"{puntajeJugador1}",fg="blue",font=("Arial", 25),bg="white")
+lblPuntajeJugador2=Label(framePrincipal,text=f"{puntajeJugador2}",fg="blue",font=("Arial", 25),bg="white")
 
 lblTitulo.grid(row=0,column=0,columnspan=3,padx=50)
 lblResultado.grid(row=4,column=0,columnspan=3)
