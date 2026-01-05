@@ -16,8 +16,15 @@ def fnNuevaPartida():
     btnNuevaPartida.config(state="disabled")
     global valorJugador2
     global valorJugador1
+    global puntajeJugador1
+    global puntajeJugador2
     valorJugador1=0
     valorJugador2=0
+    if(puntajeJugador1 >=3 or puntajeJugador2 >= 3):
+        puntajeJugador1 = 0
+        puntajeJugador2 = 0
+        lblPuntajeJugador1.config(text=puntajeJugador1)
+        lblPuntajeJugador2.config(text=puntajeJugador2)
     
 
 def fnLanzarDadoJugador1():
@@ -40,6 +47,7 @@ def fnDeterminarGanador():
     global puntajeJugador1
     global puntajeJugador2
     btnNuevaPartida.config(state="normal")
+
     if valorJugador1>valorJugador2:
         lblResultado.config(text="Gana el Jugador 1")
         puntajeJugador1+=1
@@ -48,9 +56,17 @@ def fnDeterminarGanador():
         lblResultado.config(text="Gana el Jugador 2")
         puntajeJugador2+=1
         lblPuntajeJugador2.config(text=f"{puntajeJugador2}")
-
     else:
         lblResultado.config(text="EMPATE")
+
+    if(puntajeJugador1 >= 3):
+        lblDadoJugador1.config(image=imageState[0])
+        lblDadoJugador2.config(image=imageState[1])
+
+    if(puntajeJugador2 >=3):
+        lblDadoJugador2.config(image=imageState[0])
+        lblDadoJugador1.config(image=imageState[1])
+
 
 ventana=Tk()
 ventana.geometry("500x400")
@@ -65,6 +81,11 @@ imagenes=[
     obtenerImagen("dados4.png",100),
     obtenerImagen("dados5.png",100),
     obtenerImagen("dados6.png",100)#6
+]
+
+imageState=[
+    obtenerImagen("win.png", 100),
+    obtenerImagen("lose.jpg", 100)
 ]
 
 framePrincipal=Frame(ventana,bg="white")
